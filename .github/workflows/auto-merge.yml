@@ -1,0 +1,34 @@
+name: Auto-merge knowledge PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    paths:
+      - 'entries/**'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    if: startsWith(github.event.pull_request.head.ref, 'knowledge/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require this PR only touches entries/
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          files=$(gh pr view "$PR_URL" --json files -q '.files[].path')
+          echo "$files"
+          if echo "$files" | grep -vq '^entries/'; then
+            echo "PR touches files outside entries/, refusing to auto-merge."
+            exit 1
+          fi
+
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge --auto --squash "$PR_URL"

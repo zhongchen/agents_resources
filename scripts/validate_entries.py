@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+"""Validate knowledge bank entries under entries/. Exits non-zero on any violation."""
+import re
+import sys
+from pathlib import Path
+
+ENTRIES_DIR = Path("entries")
+REQUIRED_FIELDS = ["title", "summary", "tags", "date", "confidence"]
+VALID_CONFIDENCE = {"confirmed", "tentative"}
+MAX_SUMMARY_LEN = 100
+MAX_LINES = 200
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+SECRET_PATTERNS = [
+    re.compile(r"AKIA[0-9A-Z]{16}"),
+    re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
+    re.compile(r"sk-[a-zA-Z0-9]{20,}"),
+    re.compile(r"ghp_[a-zA-Z0-9]{30,}"),
+    re.compile(r"xox[baprs]-[a-zA-Z0-9-]{10,}"),
+]
+
+
+def parse_frontmatter(text):
+    if not text.startswith("---\n"):
+        return None, text
+    end = text.find("\n---", 4)
+    if end == -1:
+        return None, text
+    raw = text[4:end]
+    body = text[end + 4:]
+    fm = {}
+    for line in raw.splitlines():
+        if not line.strip() or ":" not in line:
+            continue
+        key, _, value = line.partition(":")
+        key = key.strip()
+        value = value.strip()
+        if value.startswith("[") and value.endswith("]"):
+            value = [v.strip() for v in value[1:-1].split(",") if v.strip()]
+        fm[key] = value
+    return fm, body
+
+
+def check_file(path):
+    errors = []
+    text = path.read_text(encoding="utf-8")
+    fm, _ = parse_frontmatter(text)
+    if fm is None:
+        return [f"{path}: missing or malformed frontmatter"]
+
+    for field in REQUIRED_FIELDS:
+        if field not in fm or fm[field] == "":
+            errors.append(f"{path}: missing required field '{field}'")
+
+    if "summary" in fm and isinstance(fm["summary"], str) and len(fm["summary"]) > MAX_SUMMARY_LEN:
+        errors.append(f"{path}: summary longer than {MAX_SUMMARY_LEN} chars")
+
+    if "date" in fm and isinstance(fm["date"], str) and not DATE_RE.match(fm["date"]):
+        errors.append(f"{path}: date must be YYYY-MM-DD")
+
+    if "confidence" in fm and fm["confidence"] not in VALID_CONFIDENCE:
+        errors.append(f"{path}: confidence must be one of {sorted(VALID_CONFIDENCE)}")
+
+    if "tags" in fm and not isinstance(fm["tags"], list):
+        errors.append(f"{path}: tags must be a [comma, separated, list]")
+
+    line_count = text.count("\n")
+    if line_count > MAX_LINES:
+        errors.append(f"{path}: entry has {line_count} lines, max is {MAX_LINES} - keep entries atomic")
+
+    for pattern in SECRET_PATTERNS:
+        if pattern.search(text):
+            errors.append(f"{path}: matches secret-like pattern '{pattern.pattern}' - remove sensitive data")
+
+    return errors
+
+
+def main():
+    if not ENTRIES_DIR.exists():
+        print("No entries/ directory found, nothing to validate.")
+        return 0
+
+    files = sorted(ENTRIES_DIR.rglob("*.md"))
+    all_errors = []
+    seen_titles = {}
+
+    for path in files:
+        all_errors.extend(check_file(path))
+        text = path.read_text(encoding="utf-8")
+        fm, _ = parse_frontmatter(text)
+        if fm and isinstance(fm.get("title"), str):
+            title = fm["title"].strip().lower()
+            if title in seen_titles:
+                all_errors.append(
+                    f"{path}: duplicate title with {seen_titles[title]} - update the existing entry instead"
+                )
+            else:
+                seen_titles[title] = path
+
+    if all_errors:
+        print("Validation failed:\n")
+        for e in all_errors:
+            print(f"  - {e}")
+        print(f"\n{len(all_errors)} error(s) found.")
+        return 1
+
+    print(f"Validated {len(files)} entries. All good.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
