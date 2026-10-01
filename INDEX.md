@@ -7,6 +7,10 @@ Read this file first. Open individual entries only when a topic is relevant.
 
 - [git push can land on main with push.default=upstream](entries/git/push-default-upstream-lands-on-main.md) — Bare `git push` on a branch checked out from origin/main can push straight to main
 
+## infra
+
+- [GITHUB_TOKEN merges don't trigger other push-triggered workflows](entries/infra/github-actions-token-recursion-blocks-post-merge-workflows.md) — Auto-merge via GITHUB_TOKEN skips downstream push workflows on the same branch
+
 ## preferences
 
 - [Personal pull request and commit writing style](entries/preferences/pr-description-style.md) — PR rules - STE100, no em dashes, no Test plan section, no AI footer
