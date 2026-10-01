@@ -12,9 +12,7 @@ what the code already says. Add a comment only when the WHY is
 non-obvious: a hidden constraint, a subtle invariant, a workaround for a
 specific bug. Keep such comments short.
 
-**Why:** A branch added a `# ClickHouse Backups` banner around a flag in
-six config files. Zhong had them removed and asked how to prevent a
-repeat. Default model rules already say to avoid unnecessary comments;
-the mistake happened anyway, so this entry makes it explicit.
+**Why:** Default model rules already say to avoid unnecessary comments;
+decorative ones were added anyway, so this entry makes the rule explicit.
 
 **Applies to:** general.
