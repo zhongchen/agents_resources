@@ -9,14 +9,16 @@ confidence: confirmed
 **Rule:**
 - Use ASD-STE100 Simplified Technical English. Go straight to the point.
 - Follow the repo's pull request template.
-- Less is more.
+- Less is more: no filler, no nice-to-have context, nothing the diff
+  already shows.
 - No em dashes.
 - No "it's not Y, it's Z" phrasing.
 - No emojis.
 - No "Test plan" section.
-- No "Generated with Claude Code" footer or attribution line in the PR body.
+- No AI attribution anywhere: no "Generated with Claude Code" footer in
+  the PR body, no Co-Authored-By trailer in commit messages.
 
-**Why:** Personal preference for PR readability and tone.
+**Why:** Personal preference for PR readability, tone, and minimal token
+footprint.
 
-**Applies to:** Pull request descriptions. Does not change commit trailer
-rules set elsewhere.
+**Applies to:** Pull request descriptions and commit messages.
