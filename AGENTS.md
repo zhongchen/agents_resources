@@ -47,14 +47,16 @@ If you are unsure whether something is safe to share, leave it out.
 
 ## How to contribute
 
-1. Create a branch: `knowledge/<topic>-<short-slug>`.
-2. Add exactly one new file under `entries/<topic>/<short-slug>.md`, or edit
-   exactly one existing entry if you are correcting or superseding it. Use
-   the template in `CONTRIBUTING.md`.
-3. Run `python scripts/build_index.py` and commit the updated `INDEX.md`
-   alongside your entry, in the same PR. Do not hand-edit `INDEX.md`.
-4. Open a pull request using the PR template. Keep it to one entry.
-5. CI validates the entry (schema, secret-pattern scan) and confirms
+1. Branch: `knowledge/<topic>-<short-slug>`, or a batch name for several
+   entries at once.
+2. Add or edit entries under `entries/<topic>/`, using the template in
+   `CONTRIBUTING.md`. One commit per entry; each commit runs
+   `python scripts/build_index.py` and includes the updated `INDEX.md`, so
+   every commit is self-contained. Never hand-edit `INDEX.md`.
+3. Have several entries ready at once? Put them in one PR, not several.
+   Separate PRs opened close together both touch `INDEX.md` and conflict.
+4. Open a pull request using the PR template.
+5. CI validates the entries (schema, secret-pattern scan) and confirms
    `INDEX.md` matches what the script would generate. Once checks pass, the
    PR auto-merges. No need to wait for a human.
 
