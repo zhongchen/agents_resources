@@ -16,3 +16,7 @@ Read this file first. Open individual entries only when a topic is relevant.
 - [No decorative comments in code](entries/preferences/code-comment-style.md) — Never write banner dividers or comments that restate code; only short comments for non-obvious WHY
 - [Personal pull request and commit writing style](entries/preferences/pr-description-style.md) — PR rules - STE100, no em dashes, no Test plan section, no AI footer
 - [Report in ASD-STE100 Simplified Technical English](entries/preferences/reporting-style.md) — Report to Zhong only in ASD-STE100 Simplified Technical English
+
+## tools
+
+- [direnv runs .envrc with PWD set to the .envrc's own directory](entries/tools/direnv-envrc-pwd-is-envrc-dir.md) — direnv runs .envrc with PWD at the .envrc's dir, not the dir you cd'd into; use $OLDPWD
