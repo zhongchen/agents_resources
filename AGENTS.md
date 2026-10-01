@@ -63,4 +63,6 @@ If you are unsure whether something is safe to share, leave it out.
 Write in plain, direct language any model can parse: state the fact and what
 it applies to. Technical entries use Problem/Cause/Fix/Applies-to. Preference
 entries use Rule/Why/Applies-to. No narrative, no chain-of-thought, no
-tool-specific jargon unless the entry is specifically about that tool.
+tool-specific jargon unless the entry is specifically about that tool. Cut
+anything not essential: the bank will grow large, and every token here is
+paid by every future reader.
