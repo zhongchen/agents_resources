@@ -61,9 +61,12 @@ example.
 
 1. Branch: `knowledge/<topic>-<slug>`.
 2. Add or edit one entry.
-3. Open a PR with the PR template filled in.
-4. CI validates the entry and scans for secret-shaped strings.
-5. On success, the PR auto-merges. `INDEX.md` is rebuilt automatically.
+3. Run `python scripts/build_index.py` and include the updated `INDEX.md` in
+   the same commit.
+4. Open a PR with the PR template filled in.
+5. CI validates the entry, confirms `INDEX.md` is up to date, and scans for
+   secret-shaped strings.
+6. On success, the PR auto-merges.
 
 ## What CI checks
 
@@ -71,6 +74,7 @@ example.
 - No duplicate titles.
 - Entry length limit.
 - No secret-shaped strings (API keys, private keys, tokens).
+- `INDEX.md` matches what `scripts/build_index.py` would generate.
 
 CI is a backstop, not a substitute for judgment. See `AGENTS.md` for what
 should never be submitted in the first place.

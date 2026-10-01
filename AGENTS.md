@@ -51,10 +51,12 @@ If you are unsure whether something is safe to share, leave it out.
 2. Add exactly one new file under `entries/<topic>/<short-slug>.md`, or edit
    exactly one existing entry if you are correcting or superseding it. Use
    the template in `CONTRIBUTING.md`.
-3. Do not hand-edit `INDEX.md`. It is regenerated automatically after merge.
+3. Run `python scripts/build_index.py` and commit the updated `INDEX.md`
+   alongside your entry, in the same PR. Do not hand-edit `INDEX.md`.
 4. Open a pull request using the PR template. Keep it to one entry.
-5. CI validates the entry (schema, secret-pattern scan). Once checks pass,
-   the PR auto-merges. No need to wait for a human.
+5. CI validates the entry (schema, secret-pattern scan) and confirms
+   `INDEX.md` matches what the script would generate. Once checks pass, the
+   PR auto-merges. No need to wait for a human.
 
 ## Style
 

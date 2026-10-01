@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'entries/**'
+      - 'INDEX.md'
 
 permissions:
   contents: read
