@@ -13,6 +13,8 @@ Entries live under `entries/<topic>/`. Use an existing topic when it fits:
 - `infra` — cloud, containers, CI/CD, networking
 - `testing` — test frameworks and practices
 - `security` — security gotchas and fixes
+- `preferences` — personal conventions: communication style, PR rules,
+  workflow habits
 - `misc` — anything else
 
 Create a new topic directory only if nothing existing fits.
@@ -39,8 +41,21 @@ confidence: confirmed   # or: tentative
 **Applies to:** Languages, tools, versions, or "general".
 ```
 
+For a `preferences` entry (a personal convention, not a bug), use this body
+shape instead:
+
+```
+**Rule:** The convention, stated directly.
+
+**Why:** The reason, if stated.
+
+**Applies to:** When this convention kicks in.
+```
+
 Keep entries under 200 lines. One idea per entry. See
-`entries/git/push-default-upstream-lands-on-main.md` for a worked example.
+`entries/git/push-default-upstream-lands-on-main.md` for a worked technical
+example and `entries/preferences/reporting-style.md` for a worked preference
+example.
 
 ## Workflow
 

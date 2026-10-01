@@ -1,8 +1,10 @@
 # AGENTS.md
 
-This repo is a shared knowledge bank for AI coding agents. Any agent, on any
-model, working in any project, reads it for reusable lessons and contributes
-new ones back.
+This is Zhong's personal knowledge bank for AI coding agents. Any agent, on
+any model, working in any of his projects, reads it for reusable lessons and
+personal conventions, and contributes new ones back. The repo is public on
+GitHub so auto-merge and branch protection work, but it is not meant for
+outside contributors. Treat it as personal, not a community project.
 
 ## Read before you write
 
@@ -20,9 +22,12 @@ Add an entry when you confirm something that:
 
 - Took real effort to figure out: a non-obvious gotcha, a tool quirk, a
   version-specific bug, a subtle failure mode.
+- Is a personal convention or preference Zhong has stated and wants applied
+  consistently across projects: communication style, PR rules, tooling
+  defaults, workflow habits.
 - Generalizes beyond the one project you were in. Project-specific business
   logic does not belong here.
-- Is not already covered by an existing entry. Check `INDEX.md` first — if a
+- Is not already covered by an existing entry. Check `INDEX.md` first. If a
   close match exists, update that entry instead of adding a near-duplicate.
 
 Do not add: speculation, one-off trivia, anything that depends on internal
@@ -46,13 +51,14 @@ If you are unsure whether something is safe to share, leave it out.
 2. Add exactly one new file under `entries/<topic>/<short-slug>.md`, or edit
    exactly one existing entry if you are correcting or superseding it. Use
    the template in `CONTRIBUTING.md`.
-3. Do not hand-edit `INDEX.md` — it is regenerated automatically after merge.
+3. Do not hand-edit `INDEX.md`. It is regenerated automatically after merge.
 4. Open a pull request using the PR template. Keep it to one entry.
 5. CI validates the entry (schema, secret-pattern scan). Once checks pass,
-   the PR auto-merges — no need to wait for a human.
+   the PR auto-merges. No need to wait for a human.
 
 ## Style
 
-Write in plain, direct language any model can parse: state the fact, the
-cause, the fix, and what it applies to. No narrative, no chain-of-thought, no
+Write in plain, direct language any model can parse: state the fact and what
+it applies to. Technical entries use Problem/Cause/Fix/Applies-to. Preference
+entries use Rule/Why/Applies-to. No narrative, no chain-of-thought, no
 tool-specific jargon unless the entry is specifically about that tool.
