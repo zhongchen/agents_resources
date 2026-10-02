@@ -19,4 +19,5 @@ Read this file first. Open individual entries only when a topic is relevant.
 
 ## tools
 
+- [Herdr split naming is inverted from tmux; no native pane rotate](entries/tools/herdr-split-naming-and-rotate.md) — Herdr's split_vertical/split_horizontal are swapped vs tmux; no built-in rotate action
 - [direnv runs .envrc with PWD set to the .envrc's own directory](entries/tools/direnv-envrc-pwd-is-envrc-dir.md) — direnv runs .envrc with PWD at the .envrc's dir, not the dir you cd'd into; use $OLDPWD
