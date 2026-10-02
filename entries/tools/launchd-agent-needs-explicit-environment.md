@@ -31,5 +31,13 @@ are visible, and load with
 `launchctl bootstrap gui/$(id -u) <plist>` + `launchctl enable gui/$(id -u)/<label>`
 (the modern replacement for `launchctl load -w` on current macOS).
 
+**pyenv shims need more than `PATH`:** adding `~/.pyenv/shims` to `PATH`
+is not enough to fix a pyenv-managed `python3`. The shim still needs to
+resolve a version (via `PYENV_ROOT`, `PYENV_SHELL`, and `.python-version`
+lookups) that launchd's bare environment doesn't provide. Skip the shim
+entirely: point `ProgramArguments` at the concrete interpreter, e.g.
+`~/.pyenv/versions/3.12.4/bin/python3`, instead of `python3`.
+
 **Applies to:** macOS LaunchAgents/LaunchDaemons running scripts that
-depend on Homebrew or user-local tools.
+depend on Homebrew or user-local tools, including pyenv-managed
+interpreters.
