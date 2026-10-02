@@ -21,5 +21,6 @@ Read this file first. Open individual entries only when a topic is relevant.
 
 - [Herdr custom metadata tokens merge, not replace](entries/tools/herdr-metadata-tokens-merge-not-replace.md) — pane report-metadata --token values persist across calls until explicitly cleared
 - [Herdr pane border title has no color or style support](entries/tools/herdr-pane-title-no-color.md) — Herdr pane report-metadata --title is plain text; ANSI codes get stripped
+- [Herdr sidebar custom tokens need a $ prefix in config](entries/tools/herdr-sidebar-custom-token-dollar-prefix.md) — { token = "branch" } fails; must be { token = "$branch" } to show custom metadata
 - [Herdr split naming is inverted from tmux; no native pane rotate](entries/tools/herdr-split-naming-and-rotate.md) — Herdr's split_vertical/split_horizontal are swapped vs tmux; no built-in rotate action
 - [direnv runs .envrc with PWD set to the .envrc's own directory](entries/tools/direnv-envrc-pwd-is-envrc-dir.md) — direnv runs .envrc with PWD at the .envrc's dir, not the dir you cd'd into; use $OLDPWD
