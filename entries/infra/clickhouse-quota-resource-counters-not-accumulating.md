@@ -1,6 +1,6 @@
 ---
 title: "ClickHouse quota resource counters (execution_time, written_bytes, MergeTree read_bytes) do not accumulate on 26.3"
-summary: On ClickHouse 26.3 Altinity build, quota limits for execution_time, written_bytes, and MergeTree read_bytes never count or trip
+summary: On 26.3 Altinity build, quota execution_time, written_bytes, MergeTree read_bytes never count
 tags: [clickhouse, quotas, altinity]
 date: 2026-10-07
 confidence: confirmed

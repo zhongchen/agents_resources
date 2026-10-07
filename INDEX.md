@@ -9,8 +9,8 @@ Read this file first. Open individual entries only when a topic is relevant.
 
 ## infra
 
-- ["ClickHouse quota resource counters (execution_time, written_bytes, MergeTree read_bytes) do not accumulate on 26.3"](entries/infra/clickhouse-quota-resource-counters-not-accumulating.md) — On ClickHouse 26.3 Altinity build, quota limits for execution_time, written_bytes, and MergeTree read_bytes never count or trip
-- [ClickHouse quota counters are per node behind a load-balanced endpoint](entries/infra/clickhouse-quota-counters-per-node.md) — Quota limits never trip through an LB endpoint; counters live per node, so limits multiply by node count
+- ["ClickHouse quota resource counters (execution_time, written_bytes, MergeTree read_bytes) do not accumulate on 26.3"](entries/infra/clickhouse-quota-resource-counters-not-accumulating.md) — On 26.3 Altinity build, quota execution_time, written_bytes, MergeTree read_bytes never count
+- [ClickHouse quota counters are per node behind a load-balanced endpoint](entries/infra/clickhouse-quota-counters-per-node.md) — Quota limits never trip through a load-balanced endpoint; counters are per node
 - [GITHUB_TOKEN merges don't trigger other push-triggered workflows](entries/infra/github-actions-token-recursion-blocks-post-merge-workflows.md) — Auto-merge via GITHUB_TOKEN skips downstream push workflows on the same branch
 
 ## preferences
